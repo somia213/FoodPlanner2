@@ -34,9 +34,7 @@ public class SearchPresenterImp implements SearchPresenter {
     @Override
     public void getSearchRecipe() {
         Observable<RecipeResponse> observable= _repo.getSearchRecipes();
-
-        observable
-                .observeOn(AndroidSchedulers.mainThread())
+        observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RecipeResponse>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {

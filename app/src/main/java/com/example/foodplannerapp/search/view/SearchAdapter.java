@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -74,6 +75,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.Fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(context, "Added to favourite", Toast.LENGTH_SHORT).show();
                 searchView.getFav(current);
             }
         });
@@ -110,12 +112,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Recipe> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(recipes); // Add all meals if the search query is empty
+                filteredList.addAll(recipes);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (Recipe meal : recipes) {
                     if (meal.getStrMeal().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(meal); // Add meal to filtered list if its name contains the search query
+                        filteredList.add(meal);
                     }
                 }
             }

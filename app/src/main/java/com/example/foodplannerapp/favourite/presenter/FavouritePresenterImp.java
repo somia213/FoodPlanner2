@@ -18,23 +18,39 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class FavouritePresenterImp implements FavouritePresenter {
     private FavouriteView _view;
     private RecipeReposatory _repo;
     RecipeRemoteDataSourceImp recipeRemoteDataSourceImp;
+    static RecipeReposatory recipeReposatory;
 
     public FavouritePresenterImp(FavouriteView _view, RecipeReposatoryImp _repository) {
         this._view = _view;
         this._repo = _repository;
+        recipeReposatory=_repository;
     }
 
     @Override
     public Flowable<List<Recipe>> getFavRecipe() {
         return  _repo.getFavourites();
+            }
 
+    @Override
+    public void remove(Recipe recipe) {
 
     }
 
-
+    public static void removeFrom(Recipe recipe) {
+        recipeReposatory.deleteFromFav(recipe)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                        },
+                        error -> {
+                        }
+                );
+    }
 }

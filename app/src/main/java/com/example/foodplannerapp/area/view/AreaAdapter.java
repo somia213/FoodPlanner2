@@ -22,7 +22,7 @@ import com.example.foodplannerapp.search.view.SearchView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
+public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>  {
     private static final String TAG = "MyAdapter";
     Context context;
     AreaFragment areaView;
@@ -92,12 +92,12 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
         protected FilterResults performFiltering(CharSequence constraint) {
             List<AreaModel> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(recipes); // Add all meals if the search query is empty
+                filteredList.addAll(recipes);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (AreaModel meal : recipes) {
                     if (meal.getStrArea().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(meal); // Add meal to filtered list if its name contains the search query
+                        filteredList.add(meal);
                     }
                 }
             }

@@ -32,12 +32,6 @@ public class RecipeLocalDataSourceImp implements RecipeLocalDataSource{
 
     @Override
     public Completable insertRecipe(Recipe recipe) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                insertFav = recipeDAO.insertRecipe(recipe);
-//            }
-//        }).start();
         return recipeDAO.insertRecipe(recipe);
     }
 

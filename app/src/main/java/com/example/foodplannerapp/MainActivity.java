@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     public static final int FAV = R.id.fav;
     public static final int CALENDAR = R.id.calender;
     private boolean isUserLoggedIn =true;
+    BottomNavigationView nav_bar;
     GoogleSignInAccount account;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,19 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         account= GoogleSignIn.getLastSignedInAccount(this);
 
-        //isGeust();
         replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setBackground(null);
+        nav_bar = binding.bottomNavigationView;
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            MenuItem myMenu = nav_bar.getMenu().findItem(R.id.fav);
+            myMenu.setVisible(false);
+        }
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            MenuItem myMenu = nav_bar.getMenu().findItem(R.id.calender);
+            myMenu.setVisible(false);
+        }
+
         binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

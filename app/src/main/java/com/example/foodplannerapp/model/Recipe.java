@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 
 @Entity(tableName = "Far_table")
-public class Recipe {
+public class Recipe  implements Serializable {
 
     // POGO
     //DTO

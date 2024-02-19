@@ -12,11 +12,15 @@ public interface RecipeService {
     Call<RecipeResponse> getRecipe();
 
     @GET("categories.php")
-    Call<RecipeResponse> getCategory();
+    Observable<RecipeResponse> getCategory();
 
     @GET("search.php?s")
     Observable<RecipeResponse> getSearchMeals();
 
     @GET("list.php?a=list")
     Observable<AreaResponse> getAreaMeals();
+
+
+
+
 }

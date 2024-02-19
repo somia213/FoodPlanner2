@@ -112,7 +112,6 @@ RecipePresenter recipePresenter;
     @Override
     public void getFav(Recipe recipe) {
         if (myPresenter != null) {
-
             myPresenter.insertFav(recipe);
         }
 

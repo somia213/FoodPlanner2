@@ -113,10 +113,11 @@
             android:id="@+id/section_title_category_holder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="28dp"
             android:orientation="horizontal"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view">
 
@@ -128,50 +129,53 @@
                 android:layout_weight="1"
                 android:padding="2dp"
                 android:text="@string/like"
+                android:textColor="@color/orange"
                 android:textSize="22sp"
-                 android:textColor="@color/orange"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/seeMoreArea"
-                style="@style/TextTitle"
-                android:layout_width="wrap_content"
-                 android:textColor="@color/orange"
-                android:layout_height="match_parent"
-                android:gravity="right"
-                android:padding="2dp"
-                android:text="@string/seeMore"
-                android:textAllCaps="true"
-                android:textStyle="italic" />
+<!--            <TextView-->
+<!--                android:id="@+id/seeMoreArea"-->
+<!--                style="@style/TextTitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="right"-->
+<!--                android:padding="2dp"-->
+<!--                android:text="@string/seeMore"-->
+<!--                android:textAllCaps="true"-->
+<!--                android:textColor="@color/orange"-->
+<!--                android:textStyle="italic" />-->
 
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_random_area"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:textColor="@color/black"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            tools:listitem="@layout/recipe_list" />
+<!--        to display the meals-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_random_area"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:textColor="@color/black"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="parent"-->
+<!--            tools:listitem="@layout/recipe_list" />-->
 
         <Button
             android:id="@+id/logOutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="#FF5722"
             android:text="@string/logOut"
             android:textColorHint="#FF5722"
-            app:layout_constraintBottom_toTopOf="@+id/title_holder"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

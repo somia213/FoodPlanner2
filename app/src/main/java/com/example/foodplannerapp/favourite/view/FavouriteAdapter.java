@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplannerapp.R;
+import com.example.foodplannerapp.favourite.presenter.FavouritePresenterImp;
 import com.example.foodplannerapp.model.Recipe;
+import com.example.foodplannerapp.model.RecipeReposatoryImp;
 import com.example.foodplannerapp.search.view.SearchAdapter;
 import com.example.foodplannerapp.search.view.SearchView;
 
@@ -51,7 +54,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     @Override
     public FavouriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.iteam_meal_search_result, parent, false);
+        View view = inflater.inflate(R.layout.favourite_list, parent, false);
+
         FavouriteAdapter.ViewHolder viewHolder = new FavouriteAdapter.ViewHolder(view);
         return viewHolder;
     }
@@ -61,6 +65,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         Recipe current = recipeList.get(position);
         holder.title.setText(current.getStrMeal());
         Glide.with(context).load(recipeList.get(position).getStrMealThumb()).into(holder.photo);
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              FavouritePresenterImp.removeFrom(current);
+            }
+        });
 
     }
 
@@ -74,13 +84,15 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         TextView title;
         public CardView cardView;
         public View layout;
+        ImageView remove;
 
         public ViewHolder(@NonNull View v) {
             super(v);
             layout = v;
-            photo = v.findViewById(R.id.imgMeal);
-            title = v.findViewById(R.id.mealName);
-            cardView = v.findViewById(R.id.cardView);
+            photo = v.findViewById(R.id.mealImageView);
+            title = v.findViewById(R.id.nameDetailsTextView);
+            cardView = v.findViewById(R.id.fav_crd);
+            remove = v.findViewById(R.id.addToFavoriteButton);
         }
     }
 

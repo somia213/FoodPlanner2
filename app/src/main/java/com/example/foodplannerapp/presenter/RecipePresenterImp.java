@@ -35,9 +35,10 @@ public class RecipePresenterImp implements RecipePresenter , NetworkCallBack {
 
     @Override
     public void onSucessfull(List<Recipe> recipe) {
-            _view.showData(recipe.get(0));
+     if (recipe.get(0) != null)
+     {  _view.showData(recipe.get(0));
 
-    }
+    }}
 
     @Override
     public void onFileur(String errMsg) {

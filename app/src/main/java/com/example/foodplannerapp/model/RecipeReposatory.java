@@ -16,6 +16,8 @@ public interface RecipeReposatory {
     Observable<RecipeResponse> getSearchRecipes();
     Observable<AreaResponse> getAreaRecipes();
     Completable insertFav(Recipe recipe);
+    Completable deleteFromFav(Recipe recipe);
+
     Flowable<List<Recipe>> getFavourites();
 
 }

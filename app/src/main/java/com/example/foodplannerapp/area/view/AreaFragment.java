@@ -67,20 +67,18 @@ public class AreaFragment extends Fragment implements AreaInterface {
         seachForMeal.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 //  Log.i(TAG, "beforeTextChanged: ");
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //   Log.i(TAG, "onTextChanged: ");
+                myAdapter.getFilter().filter(s);
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 //  Log.i(TAG, "afterTextChanged: ");
-                myAdapter.getFilter().filter(s);
 
             }
         });

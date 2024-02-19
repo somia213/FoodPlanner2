@@ -51,6 +51,11 @@ public class RecipeReposatoryImp implements RecipeReposatory{
     }
 
     @Override
+    public Completable deleteFromFav(Recipe recipe) {
+        return recipeLocalDataSource.deleteRecipe(recipe);
+    }
+
+    @Override
     public Flowable<List<Recipe>> getFavourites() {
         return recipeLocalDataSource.getAllStoredRecipes();
     }

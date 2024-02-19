@@ -18,13 +18,13 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
 
     public static final String TAG = "Network";
     private static final String URL = "https://www.themealdb.com/api/json/v1/1/";
-
     private static RecipeRemoteDataSourceImp client = null; // single ton
      RecipeService recipeService;
 
     public RecipeRemoteDataSourceImp() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava3CallAdapterFactory.create()).build();
+                .baseUrl(URL).addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create()).build();
                   recipeService = retrofit.create(RecipeService.class);
     }
 
@@ -46,7 +46,6 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
                 if (response.isSuccessful()) {
                     networkCallBack.onSucessfull(response.body().meals);
                     Log.i(TAG, "onResponse: " + response.body() + " recipe successfully downloaded");
-
                 }
             }
 
@@ -57,22 +56,6 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
 
             }
         });
-
-
-
-//
-//        Call<RecipeResponse> callCateg = recipeService.getCategory();
-//        callCateg.enqueue(new Callback<RecipeResponse>() {
-//            @Override
-//            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-//                networkCallBack.onSucessfull(response.body().recipe);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-//                 networkCallBack.onFileur(t.getMessage());
-//            }
-//        });
     }
 
     @Override
@@ -86,4 +69,5 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
         Observable<AreaResponse> observable = recipeService.getAreaMeals();
         return observable.subscribeOn(Schedulers.io());
     }
+
 }

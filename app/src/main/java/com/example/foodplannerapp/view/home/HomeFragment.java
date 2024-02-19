@@ -13,16 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplannerapp.LoginActivity;
 import com.example.foodplannerapp.R;
-import com.example.foodplannerapp.db.RecipeLocalDataSourceImp;
+import com.example.foodplannerapp.StartActivity;
 import com.example.foodplannerapp.model.Recipe;
-import com.example.foodplannerapp.model.RecipeReposatoryImp;
 import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
 import com.example.foodplannerapp.presenter.RecipePresenter;
 import com.example.foodplannerapp.presenter.RecipePresenterImp;
@@ -41,6 +38,7 @@ public class HomeFragment extends Fragment implements AllRecipeView {
     TextView foodSingleName;
     RecipePresenter recipePresenter;
     Recipe Fav_recipe;
+    Recipe meal;
  // localData
 
 
@@ -64,21 +62,30 @@ private Context context;
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
          imageViewSingleMeal = view.findViewById(R.id.image_thum);
+//        imageViewSingleMeal.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                Intent intent = new Intent(getContext(), MealCard.class);
+////                intent.putExtra("object", meal);
+////                startActivity(intent);
+////            }
+//        });
          foodSingleName = view.findViewById(R.id.food_name);
          recipePresenter = new RecipePresenterImp(this , new RecipeRemoteDataSourceImp());
        // recipePresenter = new RecipePresenterImp( this,RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(getContext())));
-//        logOut = view.findViewById(R.id.logOutBtn);
-//        logOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//
-//                // Redirect the user to the login activity
-//                Intent intent = new Intent(getContext(), LoginActivity.class);
-//                startActivity(intent);
-//                requireActivity().finish(); // Optional: Close the current activity if needed
-//            }
-//        });
+
+        logOut = view.findViewById(R.id.logOutBtn);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
+                // Redirect the user to the login activity
+                Intent intent = new Intent(getContext(), StartActivity.class);
+                startActivity(intent);
+                requireActivity().finish(); // Optional: Close the current activity if needed
+            }
+        });
         recipePresenter.getRecipe();
 //            TextView plane_btn = view.findViewById(R.id.plane_btn);
 //            ImageButton fav_btn = view.findViewById(R.id.fav_btn);
@@ -97,11 +104,11 @@ private Context context;
 
     @Override
     public void showData(Recipe recipes) {
-        Glide.with(imageViewSingleMeal.getContext()).load(recipes.getStrMealThumb()).into(imageViewSingleMeal);
+        if(recipes != null)
+        {  Glide.with(imageViewSingleMeal.getContext()).load(recipes.getStrMealThumb()).into(imageViewSingleMeal);
         foodSingleName.setText(recipes.getStrMeal());
-
-
-        }
+        meal= recipes;
+        }}
 
 
     @Override
