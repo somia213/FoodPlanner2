@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">FoodPlannerApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enterPassword">Enter Password</string>
+    <string name="login_a">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="enterYourMail">Enter Your Emial</string>
+    <string name="food_planner">Food Planner</string>
+    <string name="createNewAccount">Create New Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="Create_an_account">Create an Account</string>
+    <string name="plan_food">PLan Food</string>
+    <string name="SignUP">SignUP</string>
+    <string name="already_account">Already Have Account</string>
+    <string name="Is_login">Is Login</string>
+    <string name="use_google">or Use Google</string>
+    <string name="signin">Sign in</string>
+    <string name="guest">Guest</string>
+    <string name="default_web_client_id">71320698700-md8rku407o551auvj3aqvpm18jdg090s.apps.googleusercontent.com</string>
+    <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="meal">Meal</string>
+    <string name="meal1">Meal</string>
+    <string name="like">You might like this</string>
+    <string name="seeMore">See more</string>
+    <string name="title">Title</string>
+    <string name="search">Search</string>
+    <string name="addToPlan">Add To Plan</string>
+    <string name="searchBymeal">Search By Meal Name</string>
+    <string name="areaSearch">Search By Area</string>
+    <string name="forMoreSearch">For More Search</string>
+    <string name="searchByIngr">Search By Ingredient</string>
+    <string name="SearchByMeal">Search by meal</string>
+    <string name="logout">LogOut</string>
+    <string name="logOut">Log Out</string>
+</resources>

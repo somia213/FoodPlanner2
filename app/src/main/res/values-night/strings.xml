@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="meal1">Meal</string>
+    <string name="like">You might like this</string>
+    <string name="seeMore">See more</string>
+    <string name="title">Title</string>
+    <string name="searchBymeal">Search By Meal Name</string>
+    <string name="searchByIngr">Search By Ingredient</string>
+    <string name="SearchByMeal">Search by meal</string>
+    <string name="logOut">Log Out</string>
+</resources>

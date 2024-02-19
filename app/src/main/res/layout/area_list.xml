@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:background="@color/white"
+    app:cardBackgroundColor="@color/brown"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="30dp">
+
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/calender"-->
+    <!--        android:layout_width="46dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_marginStart="15dp"-->
+    <!--        android:layout_marginTop="220dp"-->
+    <!--        android:layout_marginBottom="8dp" />-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/blackFav"-->
+    <!--        android:layout_width="47dp"-->
+    <!--        android:layout_height="43dp"-->
+    <!--        android:layout_marginStart="215dp"-->
+    <!--        android:layout_marginTop="220dp" />-->
+
+    <TextView
+        android:id="@+id/mealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="50dp"
+        android:text="TextView"
+        android:textColor="@color/orange"
+        android:textSize="20sp" />
+
+    <!--    <ImageView-->
+    <!--       -->
+    <!--        android:layout_width="213dp"-->
+    <!--        android:layout_height="138dp"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        app:srcCompat="@drawable/load" />-->
+
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/imgMeal"-->
+<!--        android:layout_width="183dp"-->
+<!--        android:layout_height="110dp"-->
+
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:src="@drawable/ic_home"-->
+<!--        app:civ_border_color="@color/orange"-->
+<!--        app:civ_border_width="2dp" />-->
+
+
+</androidx.cardview.widget.CardView>
