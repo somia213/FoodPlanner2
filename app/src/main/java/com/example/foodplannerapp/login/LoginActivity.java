@@ -3,7 +3,9 @@ package com.example.foodplannerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView signup;
     EditText Email , Password;
     private FirebaseAuth auth;
+    boolean userLogin = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class)); // Replace HomeFragment with MainActivity
                                         finish();
+
+                                        SharedPreferences preferences = this.getSharedPreferences("pref", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = preferences.edit();
+                                        editor.putBoolean("guest", true);
+                                        editor.apply();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
