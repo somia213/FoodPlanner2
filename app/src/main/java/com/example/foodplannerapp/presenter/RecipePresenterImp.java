@@ -2,30 +2,44 @@ package com.example.foodplannerapp.presenter;
 
 import android.content.Context;
 
+import com.example.foodplannerapp.model.Category;
 import com.example.foodplannerapp.model.Recipe;
 import com.example.foodplannerapp.model.RecipeReposatory;
+import com.example.foodplannerapp.model.RecipeReposatoryImp;
 import com.example.foodplannerapp.network.NetworkCallBack;
 import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
-import com.example.foodplannerapp.view.home.AllRecipeView;
+import com.example.foodplannerapp.view.presenter.AllRecipeView;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RecipePresenterImp implements RecipePresenter , NetworkCallBack {
     private AllRecipeView _view;
-    private RecipeReposatory _repo;
+     RecipeReposatoryImp _repo;
     RecipeRemoteDataSourceImp recipeRemoteDataSourceImp;
     Context context;
 
-    public RecipePresenterImp(AllRecipeView _view, RecipeRemoteDataSourceImp _repository) {
+    public RecipePresenterImp(AllRecipeView _view, RecipeReposatoryImp _repository) {
         this._view = _view;
-        this.recipeRemoteDataSourceImp = _repository;
+        this._repo = _repository;
 
     }
     @Override
     public void getRecipe() {
-        recipeRemoteDataSourceImp.makeNetworkCall(this);
+       _repo.getAllRecipes(this);
+    }
+
+    @Override
+    public void getCategories() {
+        Observable<List<Category>> observabe = _repo.getCategories();
+        observabe.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(categories -> {
+                    _view.showCategories(categories);
+                });
     }
 
 //    @Override

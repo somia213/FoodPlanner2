@@ -1,18 +1,21 @@
-package com.example.foodplannerapp;
+package com.example.foodplannerapp.signUp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodplannerapp.view.home.HomeFragment;
+import com.example.foodplannerapp.MainActivity;
+import com.example.foodplannerapp.R;
+import com.example.foodplannerapp.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -61,7 +64,12 @@ public class SignupActivity extends AppCompatActivity {
 
                             if(task.isSuccessful()){
                                 Toast.makeText(SignupActivity.this,"SignUp Successfully",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+
+//                                SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+//                                SharedPreferences.Editor editor = preferences.edit();
+//                                editor.putBoolean("isLogin", true);
+//                                editor.apply();
                             }else{
                                 Toast.makeText(SignupActivity.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

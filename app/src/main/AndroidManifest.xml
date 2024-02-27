@@ -14,16 +14,16 @@
         android:theme="@style/Theme.FoodPlannerApp"
         tools:targetApi="31">
         <activity
-            android:name=".StartActivity"
+            android:name=".startSreen.StartActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".signUp.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".splashSreen.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

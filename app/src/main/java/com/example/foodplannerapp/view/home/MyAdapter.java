@@ -2,11 +2,13 @@
 package com.example.foodplannerapp.view.home;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplannerapp.R;
+import com.example.foodplannerapp.model.Category;
 import com.example.foodplannerapp.model.Recipe;
 
 import java.util.ArrayList;
@@ -23,16 +26,15 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     private static final String TAG ="MyAdapter";
     Context context;
-    List<Recipe> recipeList;
+    List<Category> categoryList;
 
-    public MyAdapter(Context context, List<Recipe> recipeList) {
+    public MyAdapter(Context context, List<Category> categoryList) {
         this.context = context;
-        this.recipeList = recipeList;
-        recipeList = new ArrayList<>();
+        this.categoryList = categoryList;
     }
 
-    public void setRecipe (List<Recipe> recipes){
-        this.recipeList=recipes;
+    public void setCategory (List<Category> categoryList){
+        this.categoryList=categoryList;
         notifyDataSetChanged();
     }
     @NonNull
@@ -46,20 +48,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
-        Recipe current = recipeList.get(position);
-        holder.title.setText(current.getStrMeal());
-        Glide.with(context).load(recipeList.get(position).getStrMealThumb()).into(holder.photo);
+        Category current = categoryList.get(position);
+        holder.title.setText(current.getStrCategory());
+        Glide.with(context).load(categoryList.get(position).getStrCategoryThumb()).into(holder.photo);
+        holder.linearCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Bundle bundle = new Bundle();
+               bundle.putString("categoryName",current.getStrCategory());
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return recipeList.size();
+        return categoryList.size();
     }
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView photo;
         TextView title;
-        public ConstraintLayout constraintLayout;
+        public LinearLayout linearCard;
         public View layout;
 
         public ViewHolder(@NonNull View v) {
@@ -67,7 +76,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             layout = v;
             photo = v.findViewById(R.id.thumnail_image);
             title = v.findViewById(R.id.tv_title);
-            constraintLayout = v.findViewById(R.id.recipe_card);
+            linearCard = v.findViewById(R.id.linearCard);
         }
     }
 }

@@ -3,7 +3,10 @@ package com.example.foodplannerapp.network;
 import android.util.Log;
 
 import com.example.foodplannerapp.area.model.AreaResponse;
+import com.example.foodplannerapp.model.Category;
 import com.example.foodplannerapp.model.RecipeResponse;
+
+import java.util.List;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Observable;
@@ -14,6 +17,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+// Step1 in download api
 public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
 
     public static final String TAG = "Network";
@@ -69,5 +74,12 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
         Observable<AreaResponse> observable = recipeService.getAreaMeals();
         return observable.subscribeOn(Schedulers.io());
     }
+
+    @Override
+    public Observable<List<Category>> getCategories() {
+        Observable<RecipeResponse> observable = recipeService.getCategories();
+        return observable.flatMap(categoryResponse->Observable.just(categoryResponse.categories));
+    }
+
 
 }

@@ -1,7 +1,6 @@
 package com.example.foodplannerapp.search.presenter;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.foodplannerapp.model.Recipe;
 import com.example.foodplannerapp.model.RecipeReposatory;
@@ -9,13 +8,9 @@ import com.example.foodplannerapp.model.RecipeReposatoryImp;
 import com.example.foodplannerapp.model.RecipeResponse;
 import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
 import com.example.foodplannerapp.search.view.SearchView;
-import com.example.foodplannerapp.view.home.AllRecipeView;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;

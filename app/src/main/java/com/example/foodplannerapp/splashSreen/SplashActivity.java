@@ -1,11 +1,13 @@
-package com.example.foodplannerapp;
+package com.example.foodplannerapp.splashSreen;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.foodplannerapp.R;
+import com.example.foodplannerapp.startSreen.StartActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private final int  time = 3000;

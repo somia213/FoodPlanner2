@@ -2,6 +2,7 @@ package com.example.foodplannerapp.view.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,13 +19,18 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplannerapp.R;
-import com.example.foodplannerapp.StartActivity;
+import com.example.foodplannerapp.db.RecipeLocalDataSourceImp;
+import com.example.foodplannerapp.model.Category;
+import com.example.foodplannerapp.model.RecipeReposatoryImp;
+import com.example.foodplannerapp.startSreen.StartActivity;
 import com.example.foodplannerapp.model.Recipe;
 import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
 import com.example.foodplannerapp.presenter.RecipePresenter;
 import com.example.foodplannerapp.presenter.RecipePresenterImp;
+import com.example.foodplannerapp.view.presenter.AllRecipeView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,6 +47,7 @@ public class HomeFragment extends Fragment implements AllRecipeView {
     Recipe meal;
  // localData
 
+    RecyclerView homeRecycleView;
 
     List<Recipe> recipe;
 private Context context;
@@ -54,13 +61,17 @@ private Context context;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        homeRecycleView =view.findViewById(R.id.homeRecycleView);
          imageViewSingleMeal = view.findViewById(R.id.image_thum);
 //        imageViewSingleMeal.setOnClickListener(new View.OnClickListener() {
 ////            @Override
@@ -71,8 +82,23 @@ private Context context;
 ////            }
 //        });
          foodSingleName = view.findViewById(R.id.food_name);
-         recipePresenter = new RecipePresenterImp(this , new RecipeRemoteDataSourceImp());
+         recipePresenter = new RecipePresenterImp(this , RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(view.getContext())));
+
+        myAdapter = new MyAdapter(view.getContext(),new ArrayList<>());
+        homeRecycleView.setAdapter(myAdapter);
+        layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        homeRecycleView.setLayoutManager(layoutManager);
+        recipePresenter.getCategories();
        // recipePresenter = new RecipePresenterImp( this,RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(getContext())));
+
+//        planBtn = view.findViewById(R.id.plane_btn);
+//        planBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         logOut = view.findViewById(R.id.logOutBtn);
         logOut.setOnClickListener(new View.OnClickListener() {
@@ -80,10 +106,16 @@ private Context context;
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
 
+                SharedPreferences preferences = getContext().getSharedPreferences("pref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("isLogin", false);
+                editor.apply();
+
                 // Redirect the user to the login activity
                 Intent intent = new Intent(getContext(), StartActivity.class);
                 startActivity(intent);
                 requireActivity().finish(); // Optional: Close the current activity if needed
+
             }
         });
         recipePresenter.getRecipe();
@@ -110,6 +142,11 @@ private Context context;
         meal= recipes;
         }}
 
+    @Override
+    public void showCategories(List<Category> categoryList) {
+        myAdapter.setCategory(categoryList);
+    }
+
 
     @Override
     public void showErrMSG(String error) {
@@ -118,6 +155,11 @@ private Context context;
         builder.setMessage(error).setTitle("An Error Occured");
         AlertDialog dialog = builder.create();
         dialog.show();
+
+    }
+
+    @Override
+    public void getMealData(Recipe recipes) {
 
     }
 }

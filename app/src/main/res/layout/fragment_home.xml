@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_width="match_parent" android:orientation="vertical"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -106,7 +103,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_title">
-                        <include layout="@layout/card_menu"/>
+
+            <include layout="@layout/card_menu" />
         </LinearLayout>
 
         <LinearLayout
@@ -132,37 +130,18 @@
                 android:textColor="@color/orange"
                 android:textSize="22sp"
                 android:textStyle="bold" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/seeMoreArea"-->
-<!--                style="@style/TextTitle"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:gravity="right"-->
-<!--                android:padding="2dp"-->
-<!--                android:text="@string/seeMore"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textColor="@color/orange"-->
-<!--                android:textStyle="italic" />-->
-
-
         </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecycleView"
+            android:layout_width="417dp"
+            android:layout_height="181dp"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/section_title_category_holder">
 
-<!--        to display the meals-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rv_random_area"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="5dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="parent"-->
-<!--            tools:listitem="@layout/recipe_list" />-->
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/logOutBtn"
@@ -176,9 +155,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

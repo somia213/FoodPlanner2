@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.foodplannerapp.calender.view.CalenderFragment;
 import com.example.foodplannerapp.databinding.ActivityMainBinding;
 import com.example.foodplannerapp.favourite.view.FavouritFragment;
 import com.example.foodplannerapp.search.view.SearchFragment;
@@ -20,7 +23,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -28,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int SEARCH = R.id.search;
     public static final int FAV = R.id.fav;
     public static final int CALENDAR = R.id.calender;
-    private boolean isUserLoggedIn =true;
     BottomNavigationView nav_bar;
     GoogleSignInAccount account;
 
@@ -39,25 +40,26 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        boolean isUserLoggedIn = preferences.getBoolean("isLogin", false);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-        account= GoogleSignIn.getLastSignedInAccount(this);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setBackground(null);
-        nav_bar = binding.bottomNavigationView;
-        if(FirebaseAuth.getInstance().getCurrentUser() == null){
-            MenuItem myMenu = nav_bar.getMenu().findItem(R.id.fav);
-            myMenu.setVisible(false);
+        BottomNavigationView nav_bar = binding.bottomNavigationView;
+
+        MenuItem favMenuItem = nav_bar.getMenu().findItem(R.id.fav);
+        MenuItem calendarMenuItem = nav_bar.getMenu().findItem(R.id.calender);
+
+        if (!isUserLoggedIn) {
+            favMenuItem.setVisible(false);
+            calendarMenuItem.setVisible(false);
         }
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null){
-            MenuItem myMenu = nav_bar.getMenu().findItem(R.id.calender);
-            myMenu.setVisible(false);
-        }
-
-        binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == HOME) {
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
 //    protected void isGeust() {

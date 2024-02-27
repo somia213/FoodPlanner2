@@ -9,6 +9,7 @@
     app:cardCornerRadius="10dp">
 
     <LinearLayout
+        android:id="@+id/linearCard"
         android:layout_width="match_parent"
         android:layout_height="249dp"
         android:orientation="vertical">

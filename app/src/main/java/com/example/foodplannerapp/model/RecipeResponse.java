@@ -6,5 +6,6 @@ public class RecipeResponse {
 
     // random meal
     public List<Recipe> meals;
+    public List<Category> categories;
     // meals -> name of list in API
 }

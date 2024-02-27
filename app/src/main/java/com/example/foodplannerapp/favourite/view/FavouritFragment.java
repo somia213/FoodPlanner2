@@ -1,5 +1,8 @@
 package com.example.foodplannerapp.favourite.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodplannerapp.R;
 import com.example.foodplannerapp.db.RecipeLocalDataSource;
@@ -92,6 +96,11 @@ public class FavouritFragment extends Fragment implements FavouriteView{
 
     @Override
     public void showData() {
+
+        SharedPreferences preferences = requireContext().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        boolean isLogin = preferences.getBoolean("isLogin", false);
+
+        if(isLogin){
 //        favouriteAdapter.setRecipe(recipeList);
 //        favouriteAdapter.notifyDataSetChanged();
         Flowable<List<Recipe>> Fav = presenter.getFavRecipe();
@@ -106,6 +115,9 @@ public class FavouritFragment extends Fragment implements FavouriteView{
 //                        Log.d("keep", "meals list is empty");
                     }
                 });
+    }else {
+            Toast.makeText(getContext(), "Please Login to see your favourite", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

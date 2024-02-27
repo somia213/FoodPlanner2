@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-
+// step2 create pojo
 @Entity(tableName = "Far_table")
 public class Recipe  implements Serializable {
 

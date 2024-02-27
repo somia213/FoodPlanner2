@@ -6,6 +6,8 @@ import io.reactivex.rxjava3.core.Completable;
 
 public interface RecipePresenter {
     public void getRecipe();
+
+    void getCategories();
 //    public Completable insertFav(Recipe recipe);
 
 }

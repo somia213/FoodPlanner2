@@ -36,6 +36,11 @@ public class RecipeReposatoryImp implements RecipeReposatory{
     }
 
     @Override
+    public Observable<List<Category>> getCategories() {
+        return recipeRemoteDataSource.getCategories();
+    }
+
+    @Override
     public Observable<RecipeResponse> getSearchRecipes() {
         return recipeRemoteDataSource.searchByMeal();
             }
@@ -59,4 +64,5 @@ public class RecipeReposatoryImp implements RecipeReposatory{
     public Flowable<List<Recipe>> getFavourites() {
         return recipeLocalDataSource.getAllStoredRecipes();
     }
+
 }

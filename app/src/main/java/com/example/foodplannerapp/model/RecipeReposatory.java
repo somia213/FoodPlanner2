@@ -1,6 +1,5 @@
 package com.example.foodplannerapp.model;
 
-import com.example.foodplannerapp.area.model.AreaModel;
 import com.example.foodplannerapp.area.model.AreaResponse;
 import com.example.foodplannerapp.network.NetworkCallBack;
 
@@ -13,6 +12,9 @@ import io.reactivex.rxjava3.core.Observable;
 public interface RecipeReposatory {
 
     public void getAllRecipes(NetworkCallBack networkCallBack);
+
+    Observable<List<Category>> getCategories();
+
     Observable<RecipeResponse> getSearchRecipes();
     Observable<AreaResponse> getAreaRecipes();
     Completable insertFav(Recipe recipe);

@@ -1,25 +1,28 @@
-package com.example.foodplannerapp;
+package com.example.foodplannerapp.startSreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplannerapp.MainActivity;
+import com.example.foodplannerapp.R;
+import com.example.foodplannerapp.login.LoginActivity;
+import com.example.foodplannerapp.signUp.SignupActivity;
+import com.example.foodplannerapp.view.home.HomeFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class StartActivity extends AppCompatActivity {
@@ -40,6 +43,14 @@ public class StartActivity extends AppCompatActivity {
         login = findViewById(R.id.loginTxtView);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        SharedPreferences preferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        boolean isLogin = preferences.getBoolean("isLogin", false);
+        if(isLogin){
+            Intent intent = new Intent(this , MainActivity.class);
+            startActivity(intent);
+        }
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail().build();

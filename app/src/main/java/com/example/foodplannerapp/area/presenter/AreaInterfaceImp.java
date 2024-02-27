@@ -17,7 +17,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class AreaInterfaceImp implements AreaPresenter{
     private AreaInterface _view;
     private RecipeReposatory _repo;
-    RecipeRemoteDataSourceImp recipeRemoteDataSourceImp;
 
     public AreaInterfaceImp(AreaInterface _view, RecipeReposatoryImp _repository) {
         this._view = _view;
