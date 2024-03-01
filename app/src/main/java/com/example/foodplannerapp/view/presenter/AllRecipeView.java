@@ -9,6 +9,9 @@ public interface AllRecipeView {
 
     public void showData(Recipe recipes);
     public void showCategories(List<Category> categoryList);
+
+    public void showCountry(List<Recipe> countryList);
+
     public void showErrMSG(String error);
     public void getMealData(Recipe recipes);
 }

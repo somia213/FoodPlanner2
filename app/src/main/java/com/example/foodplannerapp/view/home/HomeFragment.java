@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,20 +36,20 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment implements AllRecipeView {
- RecyclerView recyclerView;
+ RecyclerView homeRecycleView;
+ RecyclerView recyclerView2;
  LinearLayoutManager layoutManager;
  MyAdapter myAdapter;
+ CountryAdapter countryAdapter;
+
     View view;
     Button logOut;
     ImageView imageViewSingleMeal;
     TextView foodSingleName;
+    TextView countryName;
     RecipePresenter recipePresenter;
-    Recipe Fav_recipe;
     Recipe meal;
  // localData
-
-    RecyclerView homeRecycleView;
-
     List<Recipe> recipe;
 private Context context;
     public HomeFragment() {
@@ -61,26 +62,19 @@ private Context context;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment ( Comment bet
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        homeRecycleView =view.findViewById(R.id.homeRecycleView);
+
+         // First Recycle View
+         homeRecycleView =view.findViewById(R.id.homeRecycleView);
          imageViewSingleMeal = view.findViewById(R.id.image_thum);
-//        imageViewSingleMeal.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Intent intent = new Intent(getContext(), MealCard.class);
-////                intent.putExtra("object", meal);
-////                startActivity(intent);
-////            }
-//        });
+
          foodSingleName = view.findViewById(R.id.food_name);
          recipePresenter = new RecipePresenterImp(this , RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(view.getContext())));
 
@@ -90,16 +84,25 @@ private Context context;
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         homeRecycleView.setLayoutManager(layoutManager);
         recipePresenter.getCategories();
-       // recipePresenter = new RecipePresenterImp( this,RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(getContext())));
 
-//        planBtn = view.findViewById(R.id.plane_btn);
-//        planBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        //Second Recycle view
 
+        recyclerView2 =view.findViewById(R.id.homeRecycleView2);
+//        imageViewSingleMeal = view.findViewById(R.id.image_thum);
+
+        countryName = view.findViewById(R.id.mealNameArea);
+        recipePresenter = new RecipePresenterImp(this , RecipeReposatoryImp.getInstance(RecipeRemoteDataSourceImp.getInstance(), RecipeLocalDataSourceImp.getInstance(view.getContext())));
+
+        countryAdapter = new CountryAdapter(view.getContext(),new ArrayList<>());
+        recyclerView2.setAdapter(countryAdapter);
+        recyclerView2 = view.findViewById(R.id.homeRecycleView2);
+
+        layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerView2.setLayoutManager(layoutManager);
+        recipePresenter.getCountry();
+
+        // LogOut Button
         logOut = view.findViewById(R.id.logOutBtn);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,18 +122,6 @@ private Context context;
             }
         });
         recipePresenter.getRecipe();
-//            TextView plane_btn = view.findViewById(R.id.plane_btn);
-//            ImageButton fav_btn = view.findViewById(R.id.fav_btn);
-////            Fav_recipe = recipe.get(0);
-//             fav_btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (Fav_recipe != null) {
-//                        recipePresenter.insertFav(Fav_recipe);
-//                    }
-//                }
-//            });
-
         return view;
     }
 
@@ -145,6 +136,12 @@ private Context context;
     @Override
     public void showCategories(List<Category> categoryList) {
         myAdapter.setCategory(categoryList);
+    }
+
+    @Override
+    public void showCountry(List<Recipe> countryList) {
+         countryAdapter.setCountry(countryList);
+        Log.i("Tag", "showCountry: lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
     }
 
 

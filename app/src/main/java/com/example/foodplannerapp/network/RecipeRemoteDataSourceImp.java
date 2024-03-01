@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.foodplannerapp.area.model.AreaResponse;
 import com.example.foodplannerapp.model.Category;
+import com.example.foodplannerapp.model.Recipe;
 import com.example.foodplannerapp.model.RecipeResponse;
 
 import java.util.List;
@@ -81,5 +82,29 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
         return observable.flatMap(categoryResponse->Observable.just(categoryResponse.categories));
     }
 
+    @Override
+    public Observable<List<Recipe>> getCountry() {
+        Observable<RecipeResponse> observable = recipeService.getCountry();
+        if (observable != null) {
+            return observable.flatMap(countryResponse -> {
+                if (countryResponse != null) {
+                    Log.i("Tag", "Country Response: " + countryResponse.toString());
+                    if (countryResponse.meals != null) {
+                        Log.i("Tag", "Country List Size: " + countryResponse.meals.size());
+                        return Observable.just(countryResponse.meals);
+                    } else {
+                        Log.e("Tag", "Country List is null");
+                        return Observable.error(new NullPointerException("Country list is null"));
+                    }
+                } else {
+                    Log.e("Tag", "Country Response is null");
+                    return Observable.error(new NullPointerException("Country response is null"));
+                }
+            });
+        } else {
+            Log.e("Tag", "Observable is null");
+            return Observable.error(new NullPointerException("Observable is null"));
+        }
+    }
 
 }

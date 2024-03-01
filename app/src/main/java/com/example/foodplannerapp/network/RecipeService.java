@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 // step3 call Api
+// api -> RecipeResponse
 public interface RecipeService {
     @GET("random.php")
     Call<RecipeResponse> getRecipe();
@@ -23,6 +24,9 @@ public interface RecipeService {
 
     @GET("categories.php")
     Observable<RecipeResponse> getCategories();
+    // second way
+    @GET("list.php?a=list")
+    Observable<RecipeResponse> getCountry();
 
 
 

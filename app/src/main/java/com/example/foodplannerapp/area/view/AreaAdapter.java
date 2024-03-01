@@ -12,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.foodplannerapp.R;
 import com.example.foodplannerapp.area.model.AreaModel;
-import com.example.foodplannerapp.model.Recipe;
-import com.example.foodplannerapp.search.view.SearchAdapter;
-import com.example.foodplannerapp.search.view.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +75,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder>  {
             super(v);
             layout = v;
             photo = v.findViewById(R.id.imgMeal);
-            title = v.findViewById(R.id.mealName);
+            title = v.findViewById(R.id.mealNameArea);
             cardView = v.findViewById(R.id.cardView);
         }
     }

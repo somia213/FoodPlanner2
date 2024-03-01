@@ -1,10 +1,10 @@
 package com.example.foodplannerapp.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.foodplannerapp.model.Category;
 import com.example.foodplannerapp.model.Recipe;
-import com.example.foodplannerapp.model.RecipeReposatory;
 import com.example.foodplannerapp.model.RecipeReposatoryImp;
 import com.example.foodplannerapp.network.NetworkCallBack;
 import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
@@ -40,6 +40,21 @@ public class RecipePresenterImp implements RecipePresenter , NetworkCallBack {
                 .subscribe(categories -> {
                     _view.showCategories(categories);
                 });
+    }
+
+    @Override
+    public void getCountry() {
+        Observable<List<Recipe>> observabe = _repo.getCountry();
+        observabe.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(country -> {
+                    _view.showCountry(country);
+                });
+        if(observabe == null){
+            Log.i("Tag", "getCountry: emptyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ");
+        }else{
+            Log.i("Tag", "getCountry: Dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ");
+        }
     }
 
 //    @Override

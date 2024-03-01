@@ -11,20 +11,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplannerapp.R;
-import com.example.foodplannerapp.area.presenter.AreaInterfaceImp;
-import com.example.foodplannerapp.db.RecipeLocalDataSourceImp;
 import com.example.foodplannerapp.model.Recipe;
-import com.example.foodplannerapp.model.RecipeReposatoryImp;
-import com.example.foodplannerapp.network.RecipeRemoteDataSourceImp;
 import com.example.foodplannerapp.presenter.RecipePresenter;
-import com.example.foodplannerapp.presenter.RecipePresenterImp;
 import com.example.foodplannerapp.search.presenter.SearchPresenter;
-import com.example.foodplannerapp.view.home.MyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +91,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             super(v);
             layout = v;
             photo = v.findViewById(R.id.imgMeal);
-            title = v.findViewById(R.id.mealName);
+            title = v.findViewById(R.id.mealNameArea);
             cardView = v.findViewById(R.id.cardView);
             Fav = v.findViewById(R.id.GoToFavImg);
         }

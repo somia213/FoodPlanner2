@@ -15,6 +15,8 @@ public interface RecipeReposatory {
 
     Observable<List<Category>> getCategories();
 
+    Observable<List<Recipe>> getCountry();
+
     Observable<RecipeResponse> getSearchRecipes();
     Observable<AreaResponse> getAreaRecipes();
     Completable insertFav(Recipe recipe);

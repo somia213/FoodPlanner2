@@ -41,6 +41,11 @@ public class RecipeReposatoryImp implements RecipeReposatory{
     }
 
     @Override
+    public Observable<List<Recipe>> getCountry() {
+        return recipeRemoteDataSource.getCountry();
+    }
+
+    @Override
     public Observable<RecipeResponse> getSearchRecipes() {
         return recipeRemoteDataSource.searchByMeal();
             }

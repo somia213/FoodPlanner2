@@ -8,6 +8,8 @@ public interface RecipePresenter {
     public void getRecipe();
 
     void getCategories();
+
+    void getCountry();
 //    public Completable insertFav(Recipe recipe);
 
 }
