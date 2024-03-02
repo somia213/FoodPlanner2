@@ -82,6 +82,13 @@ public class RecipeRemoteDataSourceImp implements RecipeRemoteDataSource{
         return observable.flatMap(categoryResponse->Observable.just(categoryResponse.categories));
     }
 
+
+    @Override
+    public Observable<List<Recipe>> networkMethodForCategoryMeals(String categoryName) {
+        Observable<RecipeResponse> observable = recipeService.getCategoryMeals(categoryName);
+        return observable.flatMap(recipeResponse->Observable.just(recipeResponse.meals));
+    }
+
     @Override
     public Observable<List<Recipe>> getCountry() {
         Observable<RecipeResponse> observable = recipeService.getCountry();

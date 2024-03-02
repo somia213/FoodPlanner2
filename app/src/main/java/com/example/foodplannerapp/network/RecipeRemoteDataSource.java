@@ -19,5 +19,7 @@ public interface RecipeRemoteDataSource {
 
     Observable<List<Category>> getCategories();
 
+    Observable<List<Recipe>> networkMethodForCategoryMeals(String categoryName);
+
     Observable<List<Recipe>> getCountry();
 }

@@ -1,10 +1,18 @@
 package com.example.foodplannerapp.model;
 
 public class Category {
+    String idCategory;
     String strCategory;
     String strCategoryThumb;
 
 
+    public String getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(String IdCategory) {
+        this.idCategory = IdCategory;
+    }
     public String getStrCategory() {
         return strCategory;
     }

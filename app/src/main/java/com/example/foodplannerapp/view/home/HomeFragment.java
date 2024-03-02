@@ -62,6 +62,8 @@ private Context context;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
     }
 
     @Override
@@ -125,6 +127,7 @@ private Context context;
         return view;
     }
 
+
     @Override
     public void showData(Recipe recipes) {
         if(recipes != null)
@@ -136,6 +139,11 @@ private Context context;
     @Override
     public void showCategories(List<Category> categoryList) {
         myAdapter.setCategory(categoryList);
+    }
+
+    @Override
+    public void showMealsDetails(List<Recipe> recipeDetal) {
+
     }
 
     @Override

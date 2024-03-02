@@ -9,6 +9,8 @@ public interface RecipePresenter {
 
     void getCategories();
 
+    void getCategoryMeals(String categoryName);
+
     void getCountry();
 //    public Completable insertFav(Recipe recipe);
 

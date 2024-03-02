@@ -15,6 +15,8 @@ public interface RecipeReposatory {
 
     Observable<List<Category>> getCategories();
 
+    Observable<List<Recipe>> getAllCategoryMeals(String categoryName);
+
     Observable<List<Recipe>> getCountry();
 
     Observable<RecipeResponse> getSearchRecipes();

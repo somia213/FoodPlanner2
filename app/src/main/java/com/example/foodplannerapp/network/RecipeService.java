@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 // step3 call Api
 // api -> RecipeResponse
@@ -27,6 +28,9 @@ public interface RecipeService {
     // second way
     @GET("list.php?a=list")
     Observable<RecipeResponse> getCountry();
+
+    @GET("filter.php")
+    Observable<RecipeResponse> getCategoryMeals(@Query("c") String categoryName);
 
 
 
